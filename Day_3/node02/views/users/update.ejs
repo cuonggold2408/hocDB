@@ -1,0 +1,43 @@
+
+<h1>Sửa thông tin người dùng</h1>
+<form action="" method="post">
+  <div class="mb-3">
+    <label for="">Tên</label>
+    <input
+      type="text"
+      name="name"
+      value="<%= userUpdate.name %>"
+      class="form-control"
+      placeholder="Tên..."
+    />
+  </div>
+  <div class="mb-3">
+    <label for="">Email</label>
+    <input
+      type="text"
+      name="email"
+      value="<%= userUpdate.email %>"
+      class="form-control"
+      placeholder="Email..."
+    />
+  </div>
+  <div class="mb-3">
+    <label for="">Trạng thái</label>
+    <select name="status" class="form-select" id="">
+      <option
+        value="0"
+        <%= +userUpdate.status === 0 ? "selected" : '' %>
+      >
+        Chưa kích hoạt
+      </option>
+      <option
+        value="1"
+        <%= +userUpdate.status === 1 ? "selected" : '' %>
+      >
+        Kích hoạt
+      </option>
+    </select>
+  </div>
+  <button class="btn btn-primary">Lưu</button>
+  <a href="/users" class="btn btn-danger">Hủy</a>
+</form>
