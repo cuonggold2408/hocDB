@@ -15,7 +15,7 @@ module.exports = {
       return next(e); // trả về lỗi lên trình duyệt
       // return next(new Error("Lỗi truy vấn")); // trả về lỗi lên trình duyệt, custom lỗi
     }
-    res.render("users/index", { users });
+    res.render("users/index", { users, addSuccess: req.flash("msg") });
   },
   add: (req, res) => {
     res.render("users/add", { req });
@@ -55,6 +55,7 @@ module.exports = {
     if (body) {
       //Gọi create
       await userModel.create(body);
+
       req.flash("msg", "Thêm người dùng thành công");
       return res.redirect("/users");
     }
@@ -95,7 +96,7 @@ module.exports = {
       }
       console.log("body.status: ", body.status);
       await userModel.updateUser(userId, body);
-      req.flash("msg", "Thêm người dùng thành công");
+      req.flash("msg", "Sửa thông tin người dùng thành công");
       return res.redirect("/users");
     }
     return res.redirect("/users/update/" + userId);

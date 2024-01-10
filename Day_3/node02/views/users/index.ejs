@@ -1,6 +1,9 @@
 <h1>Danh sách người dùng</h1>
 
 <a href="/users/add" class="btn btn-primary mb-3">Thêm mới</a>
+<% if (addSuccess.length) { %>
+<p class="alert alert-success"><%= addSuccess[0] %></p>
+<% } %>
 
 <form action="" class="mb-3">
   <div class="row">
