@@ -291,6 +291,10 @@ COPY public.users (id, name, email, password, status, created_at, updated_at, ag
 3	Cuong3	cuong3@gmail.com	12345678	f	2023-12-21 20:08:14.928147	2023-12-21 20:08:14.928147	25
 4	Cuong4\n	cuong4@gmail.com	123456789	t	2023-12-25 20:40:35.268009	2023-12-25 20:40:35.268009	30
 9	Nguyễn Quang Cường	cuongbn2004@gmail.com	\N	f	2024-01-10 02:24:03.735546	2024-01-10 02:24:03.735546	\N
+10	Học Nodejs 	abc@gmail.com	\N	f	2024-01-10 16:04:47.758705	2024-01-10 16:04:47.758705	\N
+11	Học Nextjs	nextjs@gmail.com	\N	f	2024-01-10 16:05:36.52382	2024-01-10 16:05:36.52382	\N
+12	Học HTML	html@gmail.com	\N	f	2024-01-10 16:06:26.460698	2024-01-10 16:06:26.460698	\N
+14	Học CSS không khó	css@gmail.com	\N	f	2024-01-10 16:14:40.589711	2024-01-10 16:14:40.589711	\N
 \.
 
 
@@ -335,7 +339,7 @@ SELECT pg_catalog.setval('public.posts_id_seq', 1, false);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 9, true);
+SELECT pg_catalog.setval('public.users_id_seq', 14, true);
 
 
 --
