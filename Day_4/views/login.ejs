@@ -13,7 +13,6 @@
     <title><%= title %></title>
   </head>
   <body>
-    <%= JSON.stringify( successRegister ) %>
     <h1 class="text-center mt-4">Đăng nhập</h1>
     <form action="" method="POST">
       <div class="container" style="max-width: 700px">
@@ -22,7 +21,14 @@
 
         <% } %> <% if (Object.keys(req.errors).length > 0 ) { %>
         <p class="alert alert-danger">Vui lòng nhập đầy đủ thông tin</p>
+
+        <% } %> <% if (errorPassword.length) { %>
+        <p class="alert alert-danger"><%= errorPassword[0] %></p>
+        <% } %> <% if (errorStatus.length) { %>
+        <p class="alert alert-danger"><%= errorStatus[0] %></p>
+
         <% } %>
+
         <div class="d-flex flex-column">
           <label for="" class="fs-4">Email</label>
           <input

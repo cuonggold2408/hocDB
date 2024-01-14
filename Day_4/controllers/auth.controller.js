@@ -28,7 +28,17 @@ const authController = {
 
   login: (req, res) => {
     const successRegister = req.flash("successRegister");
-    res.render("login", { req, successRegister, title: "Đăng nhập" });
+    const errorPassword = req.flash("errorPassword");
+    const errorStatus = req.flash("errorStatus");
+    // const successLogout = req.flash("successLogout");
+    res.render("login", {
+      req,
+      errorPassword,
+      successRegister,
+      errorStatus,
+      title: "Đăng nhập",
+      // successLogout,
+    });
   },
 
   handleLogin: async (req, res) => {
@@ -39,6 +49,31 @@ const authController = {
         .email("Email không đúng định dạng"),
       password: string().required("Mật khẩu bắt buộc phải nhập"),
     });
+    if (body) {
+      const hashPassword = await userModel.getPassword(body.email);
+      const status = await userModel.getStatus(body.email);
+      console.log("status: ", status);
+      if (hashPassword.length) {
+        const checkPassword = await userModel.checkPassword(
+          body.password,
+          hashPassword[0].password
+        );
+
+        if (checkPassword) {
+          // req.session.user = await userModel.findEmail(body.email);
+          if (status[0].status) {
+            req.session.user = await userModel.getUser(body.email);
+            req.session.statusLogin = true;
+            return res.redirect("/");
+          } else {
+            req.flash("errorStatus", "Tài khoản của bạn chưa được kích hoạt");
+            return res.redirect("/login");
+          }
+        }
+        req.flash("errorPassword", "Email hoặc mật khẩu không đúng");
+        return res.redirect("/login");
+      }
+    }
     return res.redirect("/login");
   },
 };
