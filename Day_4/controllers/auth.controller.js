@@ -30,14 +30,14 @@ const authController = {
     const successRegister = req.flash("successRegister");
     const errorPassword = req.flash("errorPassword");
     const errorStatus = req.flash("errorStatus");
-    // const successLogout = req.flash("successLogout");
+    const successLogout = req.flash("successLogout");
     res.render("login", {
       req,
       errorPassword,
       successRegister,
       errorStatus,
       title: "Đăng nhập",
-      // successLogout,
+      successLogout,
     });
   },
 

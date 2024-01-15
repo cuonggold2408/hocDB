@@ -18,6 +18,8 @@ app.use(
   session({
     secret: "bt_d4",
     name: "d4_session_id",
+    resave: false,
+    saveUninitialized: true,
   })
 );
 

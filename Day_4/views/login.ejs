@@ -27,6 +27,9 @@
         <% } %> <% if (errorStatus.length) { %>
         <p class="alert alert-danger"><%= errorStatus[0] %></p>
 
+        <% } %> <% if (successLogout.length) { %>
+        <p class="alert alert-success"><%= successLogout[0] %></p>
+
         <% } %>
 
         <div class="d-flex flex-column">

@@ -11,14 +11,10 @@ const homeController = {
   },
 
   logout: (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        return next(err);
-      } else {
-        // req.flash("successLogout", "Đăng xuất thành công");
-        return res.redirect("/login");
-      }
-    });
+    req.flash("successLogout", "Đăng xuất thành công");
+    delete req.session.user;
+    delete req.session.statusLogin;
+    return res.redirect("/login");
   },
 
   // index: (req, res) => {
