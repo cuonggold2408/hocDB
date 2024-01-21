@@ -31,11 +31,13 @@ const authController = {
     const errorPassword = req.flash("errorPassword");
     const errorStatus = req.flash("errorStatus");
     const successLogout = req.flash("successLogout");
+    const successChangePassword = req.flash("successChangePassword");
     res.render("login", {
       req,
       errorPassword,
       successRegister,
       errorStatus,
+      successChangePassword,
       title: "Đăng nhập",
       successLogout,
     });
@@ -75,6 +77,73 @@ const authController = {
       }
     }
     return res.redirect("/login");
+  },
+
+  changePassword: (req, res) => {
+    res.render("changePassword", {
+      req,
+      title: "Đổi mật khẩu",
+    });
+  },
+  handleChangePassword: async (req, res) => {
+    const body = await req.validate(req.body, {
+      email: string()
+        .required("Email bắt buộc phải nhập")
+        .email("Email không đúng định dạng")
+        .test("checkEmail", "Email không tồn tại", async (value) => {
+          if (value) {
+            const result = await userModel.existEmail(value);
+            console.log(result);
+            return result.length;
+          }
+        }),
+      password: string().required("Mật khẩu bắt buộc phải nhập"),
+      passwordOld: string().test(
+        "check-password",
+        "Mật khẩu không đúng",
+        async (value) => {
+          console.log("value:", value);
+          if (value) {
+            const getPassword = await userModel.getPassword(req.body.email);
+            console.log("getPassword: ", getPassword);
+            const checkPassword = await userModel.checkPassword(
+              value,
+              getPassword[0].password
+            );
+            return checkPassword;
+          }
+        }
+      ),
+      passwordNew: string().test(
+        "check-password-new",
+        "Mật khẩu mới không được trùng với mật khẩu cũ",
+        async (value) => {
+          if (value) {
+            const getPassword = await userModel.getPassword(req.body.email);
+            const checkPassword = await userModel.checkPassword(
+              value,
+              getPassword[0].password
+            );
+            return !checkPassword;
+          }
+        }
+      ),
+      passwordConfirm: string().test(
+        "check-password-confirm",
+        "Mật khẩu không trùng khớp",
+        function (value) {
+          console.log("this.parent.passwordNew: ", this.parent.passwordNew);
+          return this.parent.passwordNew === value;
+        }
+      ),
+    });
+    if (req.body) {
+      // await userModel.create(body);
+      await userModel.changePassword(req.body.email, req.body.passwordNew);
+      req.flash("successChangePassword", "Đổi mật khẩu thành công");
+      return res.redirect("/login");
+    }
+    return res.redirect("/doi-mat-khau");
   },
 };
 

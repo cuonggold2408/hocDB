@@ -14,4 +14,7 @@ router.post("/login", authController.handleLogin);
 router.get("/register", loggedMiddleware, authController.register);
 router.post("/register", authController.handleRegister);
 
+router.get("/doi-mat-khau", authController.changePassword);
+router.post("/doi-mat-khau", authController.handleChangePassword);
+
 module.exports = router;

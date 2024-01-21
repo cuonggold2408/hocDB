@@ -16,6 +16,10 @@ module.exports = {
   checkPassword: async (password, hashPassword) => {
     return await bcrypt.compare(password, hashPassword);
   },
+  changePassword: async (email, password) => {
+    const hashPassword = await bcrypt.hash(password, 10);
+    return sql`UPDATE users SET password = ${hashPassword} WHERE email = ${email}`;
+  },
   getUser: async (email) => {
     return sql`SELECT name FROM users WHERE email = ${email}`;
   },
