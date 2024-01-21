@@ -21,7 +21,7 @@ module.exports = {
     return sql`UPDATE users SET password = ${hashPassword} WHERE email = ${email}`;
   },
   getUser: async (email) => {
-    return sql`SELECT name FROM users WHERE email = ${email}`;
+    return sql`SELECT id,name FROM users WHERE email = ${email}`;
   },
   getStatus: async (email) => {
     return sql`SELECT status FROM users WHERE email = ${email}`;

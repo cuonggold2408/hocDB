@@ -33,6 +33,12 @@ app.use((req, res, next) => {
   if (req.session.user === undefined) {
     req.session.user = {};
   }
+  if (req.session.userId === undefined) {
+    req.session.userId = "";
+  }
+  if (req.session.lastActivity === undefined) {
+    req.session.lastActivity = "";
+  }
   next();
 });
 

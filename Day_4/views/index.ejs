@@ -29,37 +29,36 @@
           <i class="m-auto fa-solid fa-laptop" style="font-size: 30px"></i>
         </div>
         <div>
-          <p style="font-size: 20px">4 Phiên hoạt động</p>
+          <p style="font-size: 20px"><%= records.length %> Phiên hoạt động</p>
         </div>
       </div>
       <div>
+        <% records.forEach(function(record) { %>
         <div
           class="d-flex flex-column mb-3 border border-dark p-2 rounded"
-          style="font-size: 18px; width: 300px; cursor: pointer"
+          style="font-size: 18px; width: 450px; cursor: pointer"
         >
-          <span><%= os %></span>
-          <span>Hà Nội, Việt Nam</span>
-          <span>3 thg 12, 2023</span>
-          <span><%= browser %></span>
+          <span><%= record.device_os %></span>
+          <span
+            >Thời gian đăng nhập: <%= format(new Date(record.time_login),
+            'dd/MM/yyyy HH:mm:ss', { locale: vi }) %></span
+          >
+          <% if (record.time_action_last) { %>
+          <span
+            >Thời gian hoạt động cuối cùng: <%= format(new
+            Date(record.time_action_last), 'dd/MM/yyyy HH:mm:ss', { locale: vi
+            }) %></span
+          >
+          <% } else { %>
+          <span
+            >Thời gian hoạt động cuối cùng: <%= format(new
+            Date(record.time_login), 'dd/MM/yyyy HH:mm:ss', { locale: vi })
+            %></span
+          >
+          <% } %>
+          <span><%= record.device_name %></span>
         </div>
-        <div
-          class="d-flex flex-column mb-3 border border-dark p-2 rounded"
-          style="font-size: 18px; width: 300px; cursor: pointer"
-        >
-          <span>Windows</span>
-          <span>Hà Nội, Việt Nam</span>
-          <span>3 thg 12, 2023</span>
-          <span>Microsoft Edge</span>
-        </div>
-        <div
-          class="d-flex flex-column mb-3 border border-dark p-2 rounded"
-          style="font-size: 18px; width: 300px; cursor: pointer"
-        >
-          <span>Windows</span>
-          <span>Hà Nội, Việt Nam</span>
-          <span>3 thg 12, 2023</span>
-          <span>Microsoft Edge</span>
-        </div>
+        <% }); %>
       </div>
     </div>
     <form action="" method="POST">
