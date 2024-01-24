@@ -1,0 +1,102 @@
+body {
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100vh;
+  background: linear-gradient(45deg, #00dbde, #fc00ff);
+  display: flex;
+}
+
+.container .form {
+  width: 400px;
+  padding: 25px;
+  margin: auto;
+  background-color: #fff;
+  display: flex;
+  border-radius: 6px;
+}
+
+.container .form form {
+  margin: auto;
+}
+
+.email {
+  margin-top: 16px;
+}
+
+.email,
+.title,
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.email input,
+.title input,
+.content textarea {
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.email input:hover,
+.title input:hover,
+.content textarea:hover {
+  border-color: rgb(249, 97, 249);
+}
+
+.email input:focus,
+.title input:focus,
+.content textarea:focus {
+  border-color: rgb(249, 97, 249);
+}
+
+.content textarea {
+  font-size: 18px;
+
+  resize: none;
+}
+
+.btn {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 12px;
+  background-color: #00b7ff;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+.btn:hover {
+  background: #0897d0;
+}
+
+.successSend {
+  width: 100%;
+  border: 1px solid;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(9, 187, 9);
+  padding: 10px;
+}

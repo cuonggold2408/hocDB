@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="form">
+    <form action="" method="POST">
+      <h1 style="text-align: center">Liên hệ</h1>
+      <% if (successSend.length) { %>
+      <p class="successSend"><%= successSend[0] %></p>
+      <% } %>
+      <div class="email">
+        <label for="">Email</label>
+        <input type="email" name="email" placeholder="Email..." />
+      </div>
+      <div class="title">
+        <label for="">Tiêu đề</label>
+        <input type="text" name="title" placeholder="Tiêu đề..." />
+      </div>
+      <div class="content">
+        <label for="">Nội dung</label>
+        <textarea
+          name="content"
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="Nội dung..."
+        ></textarea>
+      </div>
+      <button class="btn">Xác nhận</button>
+    </form>
+  </div>
+</div>
