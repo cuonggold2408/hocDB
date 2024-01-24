@@ -1,0 +1,22 @@
+<h1>Lịch sử gửi email</h1>
+<a
+  href="/"
+  class="go-home"
+  style="margin-top: 16px; margin-bottom: 0px; display: inline-block"
+  >Go Home</a
+>
+<div class="container-email">
+  <% data.forEach(item => { %>
+  <div class="email">
+    <span>Email gửi đến: <%= item.email %> </span>
+    <span>Tiêu đề: <%= item.title %> </span>
+    <span>Trạng thái: <%= item.status ? "Đã đọc": "Chưa đọc" %> </span>
+    <span
+      >Thời gian gửi: <%= new Date(item.time_send).toLocaleString('vi-VN', {
+      year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit',
+      minute: '2-digit', second: '2-digit', hour12: false }) %>
+    </span>
+    <span>Nội dung đã gửi: <%= item.content %> </span>
+  </div>
+  <% }) %>
+</div>
