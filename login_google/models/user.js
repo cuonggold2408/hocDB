@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsTo(models.Provider, {
         foreignKey: "provider_id",
-        as: "provider",
       });
     }
   }

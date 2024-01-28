@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Provider.hasMany(models.User, {
         foreignKey: "provider_id",
-        as: "users",
       });
     }
   }

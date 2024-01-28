@@ -24,6 +24,15 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// Set mặc định trạng thái đăng nhập lên session
+app.use((req, res, next) => {
+  if (req.session.statusLogin === undefined) {
+    req.session.statusLogin = false;
+  }
+  next();
+});
+
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
