@@ -1,0 +1,57 @@
+<h1>Danh sách người dùng</h1>
+<% if (req.user.can('users.create')) { %>
+<a href="/users/add" class="mb-2 btn btn-success">Thêm mới</a>
+<% } %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th width="5%">STT</th>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Thời gian</th>
+      <% if (req.user.can('users.update')) { %>
+      <th width="15%">Quyền</th>
+      <% } %> <% if (req.user.can('users.update')) { %>
+      <th width="5%">Sửa</th>
+      <% } %> <% if (req.user.can('users.delete')) { %>
+      <th width="5%">Xóa</th>
+      <% } %>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach((user,index) => { %>
+    <tr>
+      <td><%= index+1 %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td>
+        <%= new Date(user.created_at).toLocaleString('vi-VN', { year: 'numeric',
+        month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+        second: '2-digit', hour12: false }) %>
+      </td>
+      <% if (req.user.can('users.update')) { %>
+      <td>
+        <a href="/users/permission/<%= user.id  %>" class="btn btn-info"
+          >Phân quyền</a
+        >
+      </td>
+      <% } %> <% if (req.user.can('users.update')) { %>
+      <td>
+        <a href="#" class="btn btn-warning">Sửa</a>
+      </td>
+      <% } %> <% if (req.user.can('users.delete')) { %>
+      <td>
+        <form
+          action="#"
+          onsubmit="return confirm('Bạn có chắc?')"
+          method="post"
+        >
+          <button class="btn btn-danger">Xóa</button>
+        </form>
+      </td>
+      <% } %>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

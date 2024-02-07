@@ -1,0 +1,46 @@
+<div class="w-50 mx-auto">
+  <h1 class="text-center">Đăng ký</h1>
+
+  <form action="" method="POST">
+    <div class="mb-3">
+      <label for="">Tên</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        placeholder="Tên..."
+        value="<%= req.old.name  %>"
+      />
+      <span class="text-danger"><%= req.errors.name %></span>
+    </div>
+    <div class="mb-3">
+      <label for="">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        placeholder="Email..."
+        value="<%= req.old.email  %>"
+      />
+      <span class="text-danger"><%= req.errors.email %></span>
+    </div>
+    <div class="mb-3">
+      <label for="">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        placeholder="Password..."
+      />
+      <span class="text-danger"><%= req.errors.password %></span>
+    </div>
+    <form action="" method="POST">
+      <div class="d-flex">
+        <a class="btn btn-primary me-3 flex-grow-1" href="/auth/dang-nhap"
+          >Về trang đăng nhập</a
+        >
+        <button class="btn btn-success flex-grow-1">Xác nhận</button>
+      </div>
+    </form>
+  </form>
+</div>
